@@ -1,0 +1,12 @@
+<odoo>
+    <!-- Base Menu -->
+    <menuitem id="base_menu" name="Tutorial"/>
+
+    <record id="action_game" model="ir.actions.act_window">
+        <field name="name">Game</field>
+        <field name="res_model">tutorial.game</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_game" name="Games" parent="base_menu" action="action_game" />
+</odoo>
