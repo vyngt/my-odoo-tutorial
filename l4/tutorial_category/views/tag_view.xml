@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_form_tag" model="ir.ui.view">
+        <field name="name">Tag Form</field>
+        <field name="model">tutorial.game.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tag">
+                <group>
+                    <field name="name"/>
+                    <field name="description" />
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

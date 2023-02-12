@@ -1,0 +1,12 @@
+<odoo>
+  <record id="view_form_game_extended" model="ir.ui.view">
+    <field name="name">Game: add Tags field</field>
+    <field name="model">tutorial.game</field>
+    <field name="inherit_id" ref="tutorial.view_form_game" />
+    <field name="arch" type="xml">
+      <field name="released_date" position="before">
+        <field name="tag_ids" widget="many2many_tags"/>
+      </field>
+    </field>
+  </record>
+</odoo>

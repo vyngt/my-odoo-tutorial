@@ -1,0 +1,8 @@
+<odoo>
+    <record id="action_game_tag" model="ir.actions.act_window">
+        <field name="name">Game Tags</field>
+        <field name="res_model">tutorial.game.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_tutorial_game_tag" name="Tags" parent="tutorial.base_menu" action="action_game_tag"/>
+</odoo>
