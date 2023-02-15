@@ -62,16 +62,12 @@ class BaseAPI:
         if self.uid is None:
             raise AuthException("Are you login?")
 
-        if self.model is not None:
-            return self._call(
-                service,
-                method,
-                *((self.database, self.uid, self.access_pw, self.model) + args),
-            )
+        credentials = self.database, self.uid, self.access_pw
 
-        return self._call(
-            service, method, *((self.database, self.uid, self.access_pw) + args)
-        )
+        if self.model is not None:
+            return self._call(service, method, *(credentials + (self.model,) + args))
+
+        return self._call(service, method, *(credentials + args))
 
     def execute_kw(self, *args):
         return self.call("object", "execute_kw", *args)
