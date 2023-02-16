@@ -60,7 +60,7 @@ class BaseAPI:
 
     def call(self, service: str, method: str, *args):
         if self.uid is None:
-            raise AuthException("Are you login?")
+            raise AuthException("login...?")
 
         credentials = self.database, self.uid, self.access_pw
 
