@@ -24,9 +24,8 @@ class ResponseException(BaseException):
 class BaseAPI:
     model = None
 
-    def __init__(self, url: str, database: str) -> None:
+    def __init__(self, url: str) -> None:
         self.url = url
-        self.database = database
         self.uid: int | None = None
         self.access_pw: str | None = None
 
@@ -60,7 +59,7 @@ class BaseAPI:
 
     def call(self, service: str, method: str, *args):
         if self.uid is None:
-            raise AuthException("login...?")
+            raise AuthException("Are you login?")
 
         credentials = self.database, self.uid, self.access_pw
 
@@ -72,18 +71,19 @@ class BaseAPI:
     def execute_kw(self, *args):
         return self.call("object", "execute_kw", *args)
 
-    def login(self, user: str, password: str):
+    def login(self, database: str, user: str, password: str):
         """
         params:
-            :user: str, username
-
+            :database: database\n
+            :user: str, username\n
             :password: str, password or api key
         """
         try:
-            uid = self._call("common", "login", self.database, user, password)
+            uid = self._call("common", "login", database, user, password)
         except ResponseException:
             raise AuthException("Login Failed")
 
+        self.database = database
         self.access_pw = password
         self.uid = uid
         return True
@@ -106,8 +106,8 @@ DB = ""  # <- your database name>
 USER = ""  # <- your username in database
 API_KEY = ""  # <- password or api key
 
-api = TutorialAPI(JSONRPC_URL, DB)
-api.login(USER, API_KEY)
+api = TutorialAPI(JSONRPC_URL)
+api.login(DB, USER, API_KEY)
 
 ## tutorial.library.book
 
